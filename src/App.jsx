@@ -1,9 +1,8 @@
-import React from 'react'
-
+import Dashboard from "./components/Dashboard"
 function App() {
   return (
-    <div className='text-red-400 text-xl'>
-      Simple app 
+    <div>
+      <Dashboard/>
     </div>
   )
 }
