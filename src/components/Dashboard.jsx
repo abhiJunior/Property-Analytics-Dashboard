@@ -1,6 +1,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { usePropertyData } from '../hooks/usePropertyData';
 import CityComparisonChart from './CityComparisonChart';
+import AIChatAssistant from './AIChatAssistant';
 import {
   Building2,
   CheckCircle2,
@@ -186,7 +187,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen text-slate-100 font-sans pb-12 selection:bg-teal-500 selection:text-slate-950">
+    <div className="min-h-screen text-slate-100 font-sans pb-12 selection:bg-teal-500 selection:text-slate-950 xl:pr-[340px]">
       
       {/* Top Navbar */}
       <nav className="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-900 px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
@@ -604,6 +605,9 @@ export default function Dashboard() {
         </section>
 
       </main>
+
+      {/* AI Chat Assistant Section */}
+      <AIChatAssistant />
     </div>
   );
 }
