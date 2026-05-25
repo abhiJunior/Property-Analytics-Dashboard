@@ -5,6 +5,7 @@ import properties from '../properties.json';
  * Custom React hook to filter and compute property tax analytics.
  *
  * @param {string} selectedTenant - The selected city/tenant filter. "All Cities" represents no filter.
+ * @param {Array} customProperties - Custom properties created by the user during the session.
  * @returns {Object} The computed properties data and analytics:
  *   - filteredData: Array of properties matching the filter.
  *   - totalRegistered: Count of properties matching the filter.
@@ -14,20 +15,23 @@ import properties from '../properties.json';
  *   - allCities: Sorted array of all unique tenant names.
  *   - cityStats: Aggregated statistics per city computed from ALL data.
  */
-export function usePropertyData(selectedTenant) {
-  // 1. Get the list of all unique cities/tenants from the original dataset.
-  // Memoized with empty dependency array as the imported properties.json is static.
+export function usePropertyData(selectedTenant, customProperties = []) {
+  // Merge static properties with user-created custom properties
+  const mergedProperties = useMemo(() => {
+    return [...customProperties, ...properties];
+  }, [customProperties]);
+
+  // 1. Get the list of all unique cities/tenants from the dataset.
   const allCities = useMemo(() => {
-    const cities = properties.map((p) => p.tenant);
+    const cities = mergedProperties.map((p) => p.tenant);
     return [...new Set(cities)].sort();
-  }, []);
+  }, [mergedProperties]);
 
   // 2. Compute aggregated statistics per city from the entire dataset (regardless of filter).
-  // Memoized with empty dependency array as it always uses all data.
   const cityStats = useMemo(() => {
     const statsMap = {};
 
-    properties.forEach((p) => {
+    mergedProperties.forEach((p) => {
       const city = p.tenant;
       if (!statsMap[city]) {
         statsMap[city] = {
@@ -55,26 +59,27 @@ export function usePropertyData(selectedTenant) {
     });
 
     return Object.values(statsMap);
-  }, []);
+  }, [mergedProperties]);
 
   // 3. Filter the property data based on the selected tenant.
   const filteredData = useMemo(() => {
     if (!selectedTenant || selectedTenant === 'All Cities') {
-      return properties;
+      return mergedProperties;
     }
-    return properties.filter((p) => p.tenant === selectedTenant);
-  }, [selectedTenant]);
+    return mergedProperties.filter((p) => p.tenant === selectedTenant);
+  }, [mergedProperties, selectedTenant]);
 
   // 4. Compute metrics for the filtered subset.
-  // We can compute these together in one pass to avoid iterating multiple times.
   const metrics = useMemo(() => {
     let approved = 0;
     let rejected = 0;
+    let pending = 0;
     let collection = 0;
 
     filteredData.forEach((p) => {
       if (p.status === 'Approved') approved += 1;
-      if (p.status === 'Rejected') rejected += 1;
+      else if (p.status === 'Rejected') rejected += 1;
+      else if (p.status === 'Pending') pending += 1;
       collection += Number(p.collection_inr) || 0;
     });
 
@@ -82,6 +87,7 @@ export function usePropertyData(selectedTenant) {
       totalRegistered: filteredData.length,
       totalApproved: approved,
       totalRejected: rejected,
+      totalPending: pending,
       totalCollection: collection,
     };
   }, [filteredData]);

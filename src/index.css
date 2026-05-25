@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'DM Sans', sans-serif;
-  --font-display: 'Space Grotesk', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
-  background-color: #000000;
+  background-color: #1e293b;
   color: #ffffff;
   font-family: var(--font-sans);
   min-height: 100vh;
@@ -16,3 +16,31 @@ body {
 h1, h2, h3, h4, h5, h6, .font-display {
   font-family: var(--font-display);
 }
+
+
+
+
+
+
+/* @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --shadow-clay: 0 10px 30px -5px rgba(0, 0, 0, 0.04), inset 0 2px 4px 0 rgba(255, 255, 255, 0.9);
+  --shadow-clay-card: 0 20px 40px -15px rgba(0, 0, 0, 0.06), inset 0 2px 8px 0 rgba(255, 255, 255, 0.9);
+  --shadow-clay-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.04);
+}
+
+body {
+  background-color: #eaeaea;
+  color: #1e293b;
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-display);
+} */

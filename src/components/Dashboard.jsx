@@ -1,5 +1,6 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { usePropertyData } from '../hooks/usePropertyData';
+import CityComparisonChart from './CityComparisonChart';
 import {
   Building2,
   CheckCircle2,
@@ -332,6 +333,9 @@ export default function Dashboard() {
           </div>
         </section>
 
+        {/* City-wise Comparison Section */}
+        <CityComparisonChart cityStats={cityStats} />
+
         {/* Dashboard Layout: Analytics & Data Table */}
         <section className="grid grid-cols-1 xl:grid-cols-3 gap-8">
           
@@ -512,7 +516,7 @@ export default function Dashboard() {
                   {paginatedData.length > 0 ? (
                     paginatedData.map((item) => (
                       <tr key={item.property_id} className="hover:bg-slate-800/10 transition-colors duration-100">
-                        <td className="py-3.5 px-4 font-mono text-xs font-semibold text-teal-400">
+                        <td className="py-3.5 px-4 font-normal text-xs font-semibold text-teal-400">
                           {item.property_id}
                         </td>
                         <td className="py-3.5 px-4 text-slate-300 font-medium">
