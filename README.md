@@ -1,16 +1,122 @@
-# React + Vite
+# 🏙️ UPYOG Property Tax Analytics Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A smart city property tax analytics platform built for the UPYOG multi-tenant system.
+> Covers 10 Indian cities with live KPI tracking, city-wise comparisons, and an AI-powered chat analyst.
 
-Currently, two official plugins are available:
+🔗 **Live Demo** → [https://property-analytics-dashboard.vercel.app/](https://property-analytics-dashboard.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![Dashboard Screenshot](./screenshot.png)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ⚙️ Tech Stack
 
-## Expanding the ESLint configuration
+| Technology | Purpose |
+|---|---|
+| React | UI Framework |
+| Tailwind CSS | Utility-first Styling |
+| Recharts | Chart Visualizations |
+| Google Gemini 2.0 Flash | AI Chat Assistant (free tier) |
+| Lucide React | Icon Library |
+| Vercel | Deployment |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Setup & Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/abhiJunior/Property-Analytics-Dashboard.git
+```
+
+### 2. Navigate into the project folder
+
+```bash
+cd Property-Analytics-Dashboard
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Configure environment variables
+
+```bash
+cp .env.example .env
+```
+
+Open `.env` and add your Gemini API key:
+
+```env
+REACT_APP_GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+> 🔑 Get a **free API key** at: [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
+
+### 5. Add the data file
+
+Place `properties.json` inside the `src/` folder.
+The app imports it directly — **no backend or database needed**.
+
+### 6. Start the development server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## ✨ Features
+
+- **KPI Dashboard** — Total registered, approved, rejected properties and total collection per city
+- **Tenant Filter** — Custom styled dropdown to filter all KPIs live by city
+- **City Comparison Charts** — Bar chart (collection) + grouped bar chart (status breakdown)
+- **AI Chat Assistant** — Ask questions in plain English, powered by Gemini 2.0 Flash
+- **Staggered Animations** — Cards fade and slide in on page load
+- **Skeleton Loading** — Shimmer placeholders while data initializes
+- **Fully Responsive** — Works seamlessly on mobile, tablet, and desktop
+
+---
+
+## 🏙️ Cities Covered
+
+Delhi • Mumbai • Pune • Bengaluru • Chennai • Hyderabad • Ahmedabad • Kolkata • Jaipur • Lucknow
+
+---
+
+## 🔒 Security
+
+- `.env` is listed in `.gitignore` — your API key is **never committed** to GitHub
+- Never share or expose your `REACT_APP_GEMINI_API_KEY` publicly
+- See `.env.example` for the required environment variable format
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── components/
+│   ├── AIChatAssistant.jsx
+│   ├── CityComparisonChart.jsx
+│   └── Dashboard.jsx
+├── hooks/
+│   └── usePropertyData.js
+├── properties.json
+└── App.jsx
+```
+
+---
+
+## 👤 Author
+
+**Abhishek** — [github.com/abhiJunior](https://github.com/abhiJunior)
+
+---
+
+*UPYOG Smart City Platform | Property Tax Module | Data: 1,000 records across 10 cities*
