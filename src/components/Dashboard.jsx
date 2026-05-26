@@ -54,7 +54,7 @@ function AnimatedNumber({ value, format }) {
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [value]);
 
   return <>{format ? format(displayValue) : displayValue}</>;
